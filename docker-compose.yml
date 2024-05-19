@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/src
+    ports:
+      - "${API_PORT}:8000"
+    container_name: api
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+  db:
+    image: mysql:8.0
+    platform: linux/arm64
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "${DB_PORT}:3306"
+    container_name: db
+    env_file:
+      - .env
+volumes:
+  db-data:
