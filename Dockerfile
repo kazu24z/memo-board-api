@@ -1,5 +1,5 @@
 # python3.9のイメージをダウンロード
-FROM python:3.9-buster
+FROM python:3.10-bullseye
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/src
 
@@ -12,7 +12,6 @@ RUN pip install poetry
 COPY pyproject.toml poetry.lock ./
 
 # poetryでライブラリをインストール (pyproject.tomlが既にある場合)
-RUN poetry config virtualenvs.in-project true
 RUN if [ -f pyproject.toml ]; then poetry install --no-root; fi
 
 
