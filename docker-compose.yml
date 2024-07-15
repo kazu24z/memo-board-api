@@ -6,6 +6,8 @@ services:
       - .:/src
     ports:
       - "${API_PORT}:8000"
+      - "${DEBUGPY_PORT}:5678"
+      - "${DEBUGG_API_PORT}:8001"
     container_name: api
     env_file:
       - .env

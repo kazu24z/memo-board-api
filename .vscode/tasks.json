@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Uvicorn with Debugpy from local",
+            "type": "shell",
+            "command": "docker exec -it api bash -c 'poetry run python -m debugpy --listen 0.0.0.0:5678 --wait-for-client --log-to-stderr -m uvicorn api.main:app --host 0.0.0.0 --port 8001'",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": "wait_for_client()"
+                }
+            }
+        },
+        {
+            "label": "Start Uvicorn with Debugpy in Docker",
+            "type": "shell",
+            "command": "poetry run python -m debugpy --listen 0.0.0.0:5678 --wait-for-client --log-to-stderr -m uvicorn api.main:app --host 0.0.0.0 --port 8001",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": "wait_for_client()"
+                }
+            }
+        }
+    ]
+}
